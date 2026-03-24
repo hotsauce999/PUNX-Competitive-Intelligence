@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUNX Competitive Intelligence Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --surface-color: rgba(255, 255, 255, 0.03);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f2f2f2;
+            --text-secondary: #a0a0a0;
+            --accent-glow: rgba(176, 38, 255, 0.6);
+            --accent-color: #b026ff;
+            --punx-edge: #00e5ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 3rem 2rem;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(176, 38, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 229, 255, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--punx-edge);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Search Filter Input */
+        .search-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: flex-end;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 50px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(176, 38, 255, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Glassmorphism Table Wrapper */
+        .table-container {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+            margin-bottom: 4rem;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--surface-border);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        tr {
+            transition: all 0.3s ease;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+            transform: scale(1.002);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) inset;
+        }
+
+        .agency-name {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .website-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .website-link:hover {
+            color: #d88cff;
+            text-decoration: underline;
+        }
+
+        .tool-tag {
+            display: inline-block;
+            background: rgba(176, 38, 255, 0.15);
+            color: #d88cff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+            border: 1px solid rgba(176, 38, 255, 0.3);
+        }
+
+        .edge-col {
+            color: var(--punx-edge);
+            font-weight: 400;
+            line-height: 1.5;
+            border-left: 1px solid var(--surface-border);
+            background: rgba(0, 229, 255, 0.015);
+        }
+
+        .edge-col strong {
+            color: #fff;
+        }
+
+        /* Deep Dive Section */
+        .deep-dive {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(176, 38, 255, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card p strong {
+            color: var(--text-primary);
+        }
+
+        .punx-adv {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--surface-border);
+        }
+
+        .punx-adv strong {
+            color: var(--punx-edge);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 1000px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>PUNX Competitive Intelligence</h1>
+            <div class="subtitle">AI Readiness & Market Positioning Report</div>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" onkeyup="filterTable()"
+                placeholder="Search agencies, capabilities, brands...">
+        </div>
+
+        <div class="table-container">
+            <table id="compTable">
+                <thead>
+                    <tr>
+                        <th>Agency</th>
+                        <th>Website</th>
+                        <th>Locations</th>
+                        <th>Key Brands</th>
+                        <th>AI Tools & Capabilities</th>
+                        <th style="width: 32%;">vs. PUNX (The Edge)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ORIGINAL 9 -->
+                    <tr>
+                        <td class="agency-name">Monks</td>
+                        <td><a href="https://monks.com" class="website-link" target="_blank">monks.com</a></td>
+                        <td>Global (HQ: Amsterdam)</td>
+                        <td>Dove, BMW, PUMA</td>
+                        <td><span class="tool-tag">Gemini</span><span class="tool-tag">Monks.Flow</span></td>
+                        <td class="edge-col">Carries legacy bloat (7,150+ staff). PUNX is <strong>AI-native from day
+                                one</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Chamni's Eye</td>
+                        <td><a href="https://chamniseye.com" class="website-link" target="_blank">chamniseye.com</a>
+                        </td>
+                        <td>Bangkok, Thailand</td>
+                        <td>Acuvue, Eucerin</td>
+                        <td><span class="tool-tag">Gen AI Studio</span></td>
+                        <td class="edge-col">Traditional production adding AI layer. PUNX is <strong>inherently built on
+                                AI</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Dokai</td>
+                        <td><a href="https://dokai.ai" class="website-link" target="_blank">dokai.ai</a></td>
+                        <td>San Francisco, CA</td>
+                        <td>CData</td>
+                        <td><span class="tool-tag">AI Sales Agents</span></td>
+                        <td class="edge-col">Automates B2B lead gen. PUNX dominates the <strong>creative execution
+                                space</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Favored</td>
+                        <td><a href="https://favored.live" class="website-link" target="_blank">favored.live</a></td>
+                        <td>Manila / Remote</td>
+                        <td>Digital Brands</td>
+                        <td><span class="tool-tag">Digital AI Tools</span></td>
+                        <td class="edge-col">Traditional agency model. PUNX bypasses standard timelines with
+                            <strong>AI-first workflows</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Riot Inc. 916</td>
+                        <td><a href="https://riotgames.com" class="website-link" target="_blank">riotgames.com</a></td>
+                        <td>Manila (APAC)</td>
+                        <td>League of Legends</td>
+                        <td><span class="tool-tag">Cinematic AI</span></td>
+                        <td class="edge-col">AAA game dev requires multi-year cycles. PUNX is an <strong>agile strike
+                                team</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">ADA</td>
+                        <td><a href="https://adaglobal.com" class="website-link" target="_blank">adaglobal.com</a></td>
+                        <td>SE Asia (HQ: SG)</td>
+                        <td>Telcos, Enterprise</td>
+                        <td><span class="tool-tag">AI CoPilots</span><span class="tool-tag">Analytics</span></td>
+                        <td class="edge-col">Data firm focusing on media buying. PUNX focuses purely on <strong>rapid
+                                creative production</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Publicis</td>
+                        <td><a href="https://publicisgroupe.com" class="website-link"
+                                target="_blank">publicisgroupe.com</a></td>
+                        <td>Global (HQ: Paris)</td>
+                        <td>Global Enterprise Roster</td>
+                        <td><span class="tool-tag">CoreAI</span></td>
+                        <td class="edge-col">Spending €300M to drag legacy systems into AI. PUNX is <strong>zero-legacy
+                                and agile</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Google<br><small>Creative Lab</small></td>
+                        <td><a href="https://labs.google" class="website-link" target="_blank">labs.google</a></td>
+                        <td>Global</td>
+                        <td>Google Internal</td>
+                        <td><span class="tool-tag">Veo</span><span class="tool-tag">Gemini</span><span
+                                class="tool-tag">Imagen</span></td>
+                        <td class="edge-col">Builds foundational models. PUNX provides the <strong>specialized human
+                                operators</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">TikTok<br><small>Symphony</small></td>
+                        <td><a href="https://tiktok.com/business" class="website-link"
+                                target="_blank">tiktok.com/business</a></td>
+                        <td>Global</td>
+                        <td>Creators/Advertisers</td>
+                        <td><span class="tool-tag">Symphony Studio</span></td>
+                        <td class="edge-col">Platform-native tools create homogeneity. PUNX crafts <strong>bespoke
+                                campaigns</strong>.</td>
+                    </tr>
+                    <!-- NEW 11 -->
+                    <tr>
+                        <td class="agency-name">Noomo Agency</td>
+                        <td><a href="https://noomoagency.com" class="website-link" target="_blank">noomoagency.com</a>
+                        </td>
+                        <td>Woodland Hills, CA</td>
+                        <td>Intel, AWS, Coinbase</td>
+                        <td><span class="tool-tag">AI 3D/XR/AR</span><span class="tool-tag">AI Sound</span></td>
+                        <td class="edge-col">Builds heavy 3D web concepts. PUNX dominates <strong>high-speed video &
+                                physical BGC pop-ups</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Koncepted</td>
+                        <td><a href="https://koncepted.com" class="website-link" target="_blank">koncepted.com</a></td>
+                        <td>San Juan, Puerto Rico</td>
+                        <td>Immutable, Fetch.ai</td>
+                        <td><span class="tool-tag">Web3 Design</span><span class="tool-tag">AI Workflows</span></td>
+                        <td class="edge-col">Niched in Web3 and app design. PUNX focuses on <strong>mainstream brand
+                                video</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Pentagram</td>
+                        <td><a href="https://pentagram.com" class="website-link" target="_blank">pentagram.com</a></td>
+                        <td>Global (NY/London)</td>
+                        <td>Graphcore, Cohere</td>
+                        <td><span class="tool-tag">Generative AI</span></td>
+                        <td class="edge-col">Legendary, ponderous branding consultancy. PUNX is an <strong>agile
+                                execution machine</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Major Tom</td>
+                        <td><a href="https://majortom.com" class="website-link" target="_blank">majortom.com</a></td>
+                        <td>Canada/US</td>
+                        <td>Zolo, OUAI</td>
+                        <td><span class="tool-tag">Ad ML Targeting</span></td>
+                        <td class="edge-col">Uses AI for media optimization. PUNX generates the actual <strong>high-end
+                                visual assets</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">The Miller Group</td>
+                        <td><a href="https://themillergroup.com" class="website-link"
+                                target="_blank">themillergroup.com</a></td>
+                        <td>Los Angeles, CA</td>
+                        <td>Pocky, LK Packaging</td>
+                        <td><span class="tool-tag">Beautiful AI</span></td>
+                        <td class="edge-col">Highly traditional ad agency pacing. PUNX brings pure <strong>AI-speed
+                                execution</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">VMV.STUDIO</td>
+                        <td><a href="https://vmv.studio" class="website-link" target="_blank">vmv.studio</a></td>
+                        <td>London, UK</td>
+                        <td>GRAMS(28)</td>
+                        <td><span class="tool-tag">Figma AI</span><span class="tool-tag">AI Sales Agents</span></td>
+                        <td class="edge-col">Focuses on luxury branding pacing. PUNX drives <strong>rapid tactical
+                                deployment</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Shake Studios</td>
+                        <td><a href="https://shaike.ai" class="website-link" target="_blank">shaike.ai</a></td>
+                        <td>Global/Remote</td>
+                        <td>GUCCI (Spec), Jaguar</td>
+                        <td><span class="tool-tag">Community AI Films</span></td>
+                        <td class="edge-col">Relies on decentralized community. PUNX is an <strong>integrated strike
+                                team</strong> ensuring brand safety.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Anchour</td>
+                        <td><a href="https://anchour.com" class="website-link" target="_blank">anchour.com</a></td>
+                        <td>Maine, USA</td>
+                        <td>Regional SMEs</td>
+                        <td><span class="tool-tag">Marketing Automation</span></td>
+                        <td class="edge-col">Months to build a brand identity. PUNX deploys stunning BGC and video
+                            assets in a <strong>fraction of the time</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Superside</td>
+                        <td><a href="https://superside.com" class="website-link" target="_blank">superside.com</a></td>
+                        <td>Global (Remote)</td>
+                        <td>Sherweb, Vimeo</td>
+                        <td><span class="tool-tag">Custom AI Models</span></td>
+                        <td class="edge-col">Focuses on CaaS template scaling. PUNX offers <strong>truly bespoke BGC
+                                integrations</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Waymark</td>
+                        <td><a href="https://waymark.com" class="website-link" target="_blank">waymark.com</a></td>
+                        <td>Detroit, MI</td>
+                        <td>SMBs, Comcast</td>
+                        <td><span class="tool-tag">Generative Ads</span></td>
+                        <td class="edge-col">Serves SMBs with templated commercials. PUNX executes <strong>deeply custom
+                                storytelling</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">QuickFrame</td>
+                        <td><a href="https://quickframe.com" class="website-link" target="_blank">quickframe.com</a>
+                        </td>
+                        <td>Austin, TX</td>
+                        <td>Performance Marketers</td>
+                        <td><span class="tool-tag">Studio AI Generators</span></td>
+                        <td class="edge-col">Focuses on algorithmic performance feeds. PUNX delivers <strong>true brand
+                                storytelling</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="agency-name">Visual Best</td>
+                        <td><a href="https://visualbest.co" class="website-link" target="_blank">visualbest.co</a></td>
+                        <td>Noida, India</td>
+                        <td>Various</td>
+                        <td><span class="tool-tag">Hybrid Synthesia/Runway</span></td>
+                        <td class="edge-col">A traditional agency testing a hybrid model. PUNX is <strong>purely
+                                AI-native</strong>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <header style="margin-bottom: 3rem; margin-top: 6rem;">
+            <h2 style="font-size: 2.5rem; color: #fff; font-weight: 800;">Deep Dive Analysis</h2>
+            <div class="subtitle" style="font-size: 1rem;">Structural Bottlenecks vs. The Agility Model</div>
+        </header>
+
+        <div class="deep-dive">
+            <div class="card">
+                <h3>Scale & Video Automation</h3>
+                <p><strong>Agencies:</strong> Superside, Waymark, QuickFrame</p>
+                <p><strong>Bottlenecks:</strong> These platforms turn AI into a factory assembly line, generating
+                    templated performance ads and thousands of banner variations at scale.</p>
+                <div class="punx-adv">
+                    <strong>The PUNX Advantage</strong>
+                    <p style="margin-bottom:0">Templates create a sea of generic "sameness." PUNX provides the critical
+                        human-in-the-loop artistry required to produce high-end, bespoke campaigns that escape
+                        algorithmic homogeneity.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>The Traditional Guard</h3>
+                <p><strong>Agencies:</strong> Pentagram, Major Tom, The Miller Group, Anchour</p>
+                <p><strong>Bottlenecks:</strong> Even when using AI (like Midjourney for icons or ChatGPT for SEO), they
+                    remain tethered to traditional, months-long conceptual branding timelines and legacy retainers.</p>
+                <div class="punx-adv">
+                    <strong>The PUNX Advantage</strong>
+                    <p style="margin-bottom:0">Zero traditional production tax. PUNX is fundamentally an execution
+                        engine. We bypass the ponderous "brand philosophy" phases to deliver rapid, high-fidelity video.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>The Niche Specialists</h3>
+                <p><strong>Agencies:</strong> Noomo, Koncepted, VMV, Shake Studios</p>
+                <p><strong>Bottlenecks:</strong> Highly niched. Noomo excels in heavy 3D Web/XR, Koncepted in
+                    Web3/Crypto UI, and Shake Studios relies on decentralized community creators rather than an in-house
+                    core.</p>
+                <div class="punx-adv">
+                    <strong>The PUNX Advantage</strong>
+                    <p style="margin-bottom:0">Physical integration is king. PUNX explicitly dominates the cross-section
+                        of high-speed AI video and physical BGC pop-up execution—a holistic strike web-only agencies
+                        can't match.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>The Mega-Enterprises</h3>
+                <p><strong>Agencies:</strong> Publicis, Monks, ADA</p>
+                <p><strong>Bottlenecks:</strong> Spending hundreds of millions to upskill a legacy workforce (tens of
+                    thousands of employees) into a completely new workflow while dealing with bureaucratic inertia.</p>
+                <div class="punx-adv">
+                    <strong>The PUNX Advantage</strong>
+                    <p style="margin-bottom:0">Born zero-legacy. PUNX is a speedboat fully optimized on modern AI rails
+                        from day one, escaping enterprise red tape and moving 10x faster.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterTable() {
+            // Declare variables
+            var input, filter, table, tr, td, i, j, txtValue, match;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("compTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 1; i < tr.length; i++) { // start at 1 to skip header row
+                td = tr[i].getElementsByTagName("td");
+                match = false;
+                // Check each cell in the row
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+                if (match) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
