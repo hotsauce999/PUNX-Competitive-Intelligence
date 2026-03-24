@@ -37,7 +37,7 @@
         }
 
         .container {
-            max-width: 1500px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
@@ -173,13 +173,26 @@
             color: #fff;
         }
 
+        .website-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .website-link:hover {
+            color: #d88cff;
+            text-decoration: underline;
+        }
+
         .tool-tag {
             display: inline-block;
             background: rgba(176, 38, 255, 0.15);
             color: #d88cff;
             padding: 0.2rem 0.6rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin: 0.2rem;
             border: 1px solid rgba(176, 38, 255, 0.3);
         }
@@ -386,7 +399,7 @@
             }
 
             table {
-                min-width: 1000px;
+                min-width: 1200px;
             }
         }
     </style>
@@ -431,74 +444,88 @@
                 <thead>
                     <tr>
                         <th>Agency</th>
-                        <th>Locations</th>
+                        <th>Website</th>
+                        <th>Specific Location</th>
                         <th>Key Brands</th>
-                        <th>Capabilities & Tools</th>
-                        <th style="width: 32%;">vs. PUNX (The Edge)</th>
+                        <th style="width: 20%;">Capability of using AI tools</th>
+                        <th style="width: 25%;">Full review vs. PUNX</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="agency-name">Monks</td>
-                        <td>57 hubs in 33 countries; HQ London</td>
+                        <td><a href="https://monks.com" class="website-link" target="_blank">monks.com</a></td>
+                        <td>London, UK (HQ); 57 Global Hubs</td>
                         <td>General Motors, BMW, T-Mobile, Burger King, Netflix, Dove, Meta</td>
                         <td><span class="tool-tag">Monks.Flow</span><span class="tool-tag">Adobe Firefly</span><span
-                                class="tool-tag">Agentic Advisory</span></td>
+                                class="tool-tag">Agentic Advisory</span><br>Uses Nvidia integrations & custom pipelines.
+                        </td>
                         <td class="edge-col">Has scale (7,500+) but operates as a traditional agency. PUNX wins on
-                            <strong>pure speed and AI-native workflows</strong> without legacy overhead.</td>
+                            <strong>pure speed and AI-native workflows</strong> without massive legacy overhead.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Chamni Eye</td>
+                        <td><a href="https://chamniseye.com" class="website-link" target="_blank">chamniseye.com</a>
+                        </td>
                         <td>Bangkok, Thailand</td>
                         <td>Regional brands in SE Asia</td>
-                        <td><span class="tool-tag">360° branding</span><span class="tool-tag">Post-production</span>
-                        </td>
+                        <td><span class="tool-tag">Post-production</span><br>Traditional 360° branding. No public AI
+                            tooling.</td>
                         <td class="edge-col">Traditional production house. No AI positioning. PUNX has a <strong>massive
-                                advantage in speed/cost</strong> for video/BGC.</td>
+                                advantage in AI-driven speed/cost</strong> for video/BGC.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Dokai</td>
-                        <td>Unknown</td>
-                        <td>Unknown</td>
-                        <td><span class="tool-tag">Unknown</span></td>
-                        <td class="edge-col">Insufficient data. <strong>PUNX dominates by default.</strong></td>
+                        <td><a href="https://dokai.ai" class="website-link" target="_blank">dokai.ai</a></td>
+                        <td>San Francisco, CA, USA</td>
+                        <td>CData</td>
+                        <td><span class="tool-tag">Sales Agents</span><br>Automated lead generation.</td>
+                        <td class="edge-col">Insufficient creative data. PUNX <strong>dominates directly</strong> in
+                            high-end video & creative marketing.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Favored</td>
-                        <td>London, Leeds (UK)</td>
+                        <td><a href="https://favored.live" class="website-link" target="_blank">favored.live</a></td>
+                        <td>London & Leeds, UK</td>
                         <td>Durex, Elvie, MTV, Channel 4, Go Ape UK</td>
-                        <td><span class="tool-tag">TikTok Creators</span><span class="tool-tag">Rapid testing</span>
-                        </td>
-                        <td class="edge-col">UK-focused performance shop with Apple DNA. PUNX wins on <strong>10x
-                                production speed</strong>.</td>
+                        <td><span class="tool-tag">Testing Frameworks</span><br>In-house human TikTok creators. No
+                            structural AI automation.</td>
+                        <td class="edge-col">UK-focused performance shop with Apple DNA. PUNX wins exponentially on
+                            <strong>AI-native 10x production speed</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Riot Inc 916</td>
-                        <td>Unknown (possibly Sacramento)</td>
-                        <td>Unknown</td>
-                        <td><span class="tool-tag">Unknown</span></td>
-                        <td class="edge-col">Insufficient data. <strong>PUNX dominates.</strong></td>
+                        <td>N/A</td>
+                        <td>Manila, PH / Sacramento, CA</td>
+                        <td>eSports / League of Legends</td>
+                        <td><span class="tool-tag">Cinematic pipelines</span><br>Traditional AAA gaming production.</td>
+                        <td class="edge-col">Long AAA gaming cycles. PUNX acts as a <strong>rapid, agile storytelling
+                                strike team</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Ada</td>
-                        <td>Toronto (HQ), Global</td>
-                        <td>Enterprise</td>
+                        <td><a href="https://ada.cx" class="website-link" target="_blank">ada.cx</a></td>
+                        <td>Toronto, Canada (HQ); Global</td>
+                        <td>Global Enterprise</td>
                         <td><span class="tool-tag">Reasoning Engine™</span><span class="tool-tag">LLMs</span><span
-                                class="tool-tag">Voice</span></td>
+                                class="tool-tag">Voice AI</span></td>
                         <td class="edge-col"><strong>Not a creative agency.</strong> AI-native customer service
                             platform. No direct competition.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Publicis</td>
-                        <td>Global (84,000 employees)</td>
+                        <td><a href="https://publicisgroupe.com" class="website-link"
+                                target="_blank">publicisgroupe.com</a></td>
+                        <td>Paris, France (HQ); Global</td>
                         <td>All major enterprise brands</td>
-                        <td><span class="tool-tag">Marcel AI</span></td>
-                        <td class="edge-col">Legacy holding company targeting internal efficiency. PUNX wins on
-                            <strong>AI-native creative output</strong>.</td>
+                        <td><span class="tool-tag">Marcel AI</span><br>Internal connectivity & HR pairing.</td>
+                        <td class="edge-col">Legacy holding company using €300M AI push for internal efficiency. PUNX
+                            wins on <strong>AI-native creative output speed</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Google Creative Lab</td>
-                        <td>New York, London</td>
+                        <td><a href="https://labs.google" class="website-link" target="_blank">labs.google</a></td>
+                        <td>New York, NY & London, UK</td>
                         <td>Google internals</td>
                         <td><span class="tool-tag">Genie 3</span><span class="tool-tag">Project Astra</span><span
                                 class="tool-tag">GenType</span></td>
@@ -506,118 +533,137 @@
                     </tr>
                     <tr>
                         <td class="agency-name">TikTok</td>
-                        <td>Global platform</td>
+                        <td><a href="https://tiktok.com/business" class="website-link" target="_blank">tiktok.com</a>
+                        </td>
+                        <td>Los Angeles, CA; Global</td>
                         <td>Creators/Advertisers</td>
-                        <td><span class="tool-tag">TikTok Marketing Partners</span></td>
-                        <td class="edge-col">Platform, not an agency. PUNX can be a TikTok partner; <strong>TikTok
-                                itself is not a competitor.</strong></td>
+                        <td><span class="tool-tag">Symphony</span><br>Platform template generative tools.</td>
+                        <td class="edge-col">Platform, not an agency. PUNX crafts bespoke campaigns outside
+                            <strong>platform-native homogenous templates</strong>.</td>
                     </tr>
-                    <!-- Updated Specific Competitors -->
                     <tr>
                         <td class="agency-name">Noomo Agency</td>
-                        <td>Los Angeles, USA</td>
+                        <td><a href="https://noomoagency.com" class="website-link" target="_blank">noomoagency.com</a>
+                        </td>
+                        <td>Los Angeles, CA, USA</td>
                         <td>Salesforce, Space Needle, Cadence, Intel</td>
-                        <td><span class="tool-tag">3D & WebGL</span><span class="tool-tag">AR</span><span
-                                class="tool-tag">UI/UX</span><span class="tool-tag">Booths</span></td>
+                        <td><span class="tool-tag">3D & WebGL</span><span class="tool-tag">AR</span><br>Interactive
+                            booth activations.</td>
                         <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Video, Live Events, Animation, APAC
                                 Focus</strong>. Noomo edges in <strong>Immersive/3D Web</strong>. Both share Brand
                             Identity.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Koncepted</td>
-                        <td>Remote / Global</td>
+                        <td><a href="https://koncepted.com" class="website-link" target="_blank">koncepted.com</a></td>
+                        <td>San Juan, Puerto Rico</td>
                         <td>Seedify, Fetch.ai, Ledger, OKX</td>
-                        <td><span class="tool-tag">UI/UX</span><span class="tool-tag">Motion</span><span
-                                class="tool-tag">Gamification</span><span class="tool-tag">Subs Model</span></td>
+                        <td><span class="tool-tag">UI/UX</span><span class="tool-tag">Web3 Design</span><br>No deep AI
+                            workflows cited.</td>
                         <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Video, Live Events, APAC Focus</strong>.
                             Koncepted edges in <strong>Web3 / Crypto Niche</strong>. Both share Animation/Identity.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Pentagram</td>
+                        <td><a href="https://pentagram.com" class="website-link" target="_blank">pentagram.com</a></td>
                         <td>NY, London, Austin, Berlin</td>
                         <td>Citibank, Microsoft, Reddit, SNL</td>
-                        <td><span class="tool-tag">Visual Systems</span><span class="tool-tag">Architecture</span><span
-                                class="tool-tag">Wayfinding</span></td>
+                        <td><span class="tool-tag">Midjourney</span><span class="tool-tag">Visual Systems</span><br>Uses
+                            AI for massive icon generation.</td>
                         <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Video, Live Events, Animation, APAC
                                 Focus</strong>. Pentagram has no exclusive capabilities over PUNX.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Major Tom</td>
+                        <td><a href="https://majortom.com" class="website-link" target="_blank">majortom.com</a></td>
                         <td>Vancouver, Toronto, NY</td>
                         <td>HSBC, Cirque du Soleil, Expedia</td>
-                        <td><span class="tool-tag">SEO & GEO</span><span class="tool-tag">Paid Media</span><span
-                                class="tool-tag">Web Dev</span></td>
+                        <td><span class="tool-tag">SEO & GEO</span><span class="tool-tag">Paid Media</span><br>AI
+                            optimization targeting.</td>
                         <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Video, Live Events, Animation, APAC
                                 Focus</strong>. Major Tom edges in <strong>Performance Marketing / SEO</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">The Miller Group</td>
-                        <td>Los Angeles, USA</td>
+                        <td><a href="https://themillergroup.com" class="website-link"
+                                target="_blank">themillergroup.com</a></td>
+                        <td>Pacific Palisades, LA, CA, USA</td>
                         <td>Simplehuman, Pocky, RE/MAX</td>
-                        <td><span class="tool-tag">Brand Revitalization</span><span class="tool-tag">Paid Search</span>
-                        </td>
+                        <td><span class="tool-tag">Beautiful AI</span><span class="tool-tag">Paid
+                                Search</span><br>Presentations & revitalization.</td>
                         <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Live Events, APAC Focus</strong>. Miller
-                            Group edges in <strong>Performance Marketing / SEO</strong>.</td>
+                            Group edges in <strong>Performance Marketing / SEO</strong>. Both share Video, Animation.
+                        </td>
                     </tr>
                     <tr>
                         <td class="agency-name">VMV.STUDIO</td>
-                        <td>West London, UK</td>
+                        <td><a href="https://vmv.studio" class="website-link" target="_blank">vmv.studio</a></td>
+                        <td>Acklam Rd, West London, UK</td>
                         <td>OSCO, Luxury/Fintech Brands</td>
-                        <td><span class="tool-tag">Tether Retainer</span><span class="tool-tag">UX/UI</span><span
-                                class="tool-tag">Campaigns</span></td>
+                        <td><span class="tool-tag">Figma AI</span><span class="tool-tag">Tether
+                                Retainer</span><br>Built-in image workflows.</td>
                         <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Live Events, APAC Focus</strong>.
                             VMV.STUDIO has no exclusive capabilities. Both share Video/Identity.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Shake Studios</td>
+                        <td><a href="https://shaike.ai" class="website-link" target="_blank">shaike.ai</a></td>
                         <td>Surrey, UK</td>
                         <td>UK Businesses, B2B Partners</td>
-                        <td><span class="tool-tag">2D/3D Animation</span><span class="tool-tag">Explainer Videos</span>
-                        </td>
-                        <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Identity, Live Events, APAC
+                        <td><span class="tool-tag">Shaike.ai</span><span class="tool-tag">2D/3D
+                                Animation</span><br>Community-sourced AI film networking.</td>
+                        <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Brand Identity, Live Events, APAC
                                 Focus</strong>. Shake Studios has no exclusive capabilities over PUNX.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Anchour</td>
-                        <td>Maine, USA</td>
+                        <td><a href="https://anchour.com" class="website-link" target="_blank">anchour.com</a></td>
+                        <td>New Gloucester, Maine, USA</td>
                         <td>Apple, Samsung, TaskRabbit</td>
-                        <td><span class="tool-tag">Shopify/Web</span><span class="tool-tag">Klaviyo</span><span
-                                class="tool-tag">Ecommerce</span></td>
+                        <td><span class="tool-tag">Shopify/Web</span><span class="tool-tag">Klaviyo</span><br>Marketing
+                            automation & Ecommerce logic.</td>
                         <td class="edge-col">PUNX leads in <strong>AI-NATIVE, Video, Live Events, Animation, APAC
                                 Focus</strong>. Anchour edges in <strong>Performance Marketing / SEO</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Superside</td>
-                        <td>Berlin-based, Global</td>
+                        <td><a href="https://superside.com" class="website-link" target="_blank">superside.com</a></td>
+                        <td>Berlin, Germany; Remote</td>
                         <td>Reddit, Pernod Ricard, Antler</td>
-                        <td><span class="tool-tag">40+ AI Workflows</span><span class="tool-tag">Figma AI</span></td>
-                        <td class="edge-col">Closest PUNX competitor. Superside focuses on static design + emerging
-                            video; PUNX focuses on <strong>video/BGC first</strong>.</td>
+                        <td><span class="tool-tag">40+ AI Workflows</span><span class="tool-tag">Figma
+                                AI</span><br>Custom Midjourney brand models.</td>
+                        <td class="edge-col">Closest PUNX competitor. Superside focuses on flat static design + graphic
+                            banners at scale; PUNX focuses on <strong>high-end video/BGC first</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Waymark</td>
-                        <td>Detroit, MI</td>
+                        <td><a href="https://waymark.com" class="website-link" target="_blank">waymark.com</a></td>
+                        <td>Detroit, MI, USA</td>
                         <td>Fox TV, Spectrum, Sinclair</td>
-                        <td><span class="tool-tag">13 video models</span><span class="tool-tag">Auto-branding</span>
-                        </td>
-                        <td class="edge-col">Focuses on local TV/SMB templates. PUNX represents agency+AI hybrid,
-                            winning on <strong>premium strategic quality</strong>.</td>
+                        <td><span class="tool-tag">13 video models</span><span
+                                class="tool-tag">Auto-branding</span><br>Prompt-to-commercial templates.</td>
+                        <td class="edge-col">Focuses on local TV/SMB templates. PUNX represents bespoke agency+AI
+                            hybrid, winning on <strong>premium strategic narrative storytelling</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">QuickFrame</td>
-                        <td>Mountain.com (MNTN)</td>
+                        <td><a href="https://quickframe.com" class="website-link" target="_blank">quickframe.com</a>
+                        </td>
+                        <td>Austin, TX, USA (MNTN HQ)</td>
                         <td>MNTN Performance TV</td>
-                        <td><span class="tool-tag">AI txt-to-video</span></td>
-                        <td class="edge-col">Productized platform for CTV/performance. PUNX focuses on
-                            <strong>BGC/social, winning on custom brand strategy</strong>.</td>
+                        <td><span class="tool-tag">AI Txt-to-Video</span><br>Gen optimized for CTV performance.</td>
+                        <td class="edge-col">Productized platform for CTV/performance scaling. PUNX focuses on
+                            <strong>BGC/social activations, winning on custom brand strategy</strong>.</td>
                     </tr>
                     <tr>
                         <td class="agency-name">Visual Best</td>
-                        <td>Noida, India; USA</td>
+                        <td><a href="https://visualbest.co" class="website-link" target="_blank">visualbest.co</a></td>
+                        <td>Noida, India & USA</td>
                         <td>UNICEF, Intel, Adobe</td>
-                        <td><span class="tool-tag">AI motion graphics</span></td>
-                        <td class="edge-col">Offshore design agency using AI for efficiency. Strong on static design;
-                            PUNX wins on <strong>video-first AI</strong>.</td>
+                        <td><span class="tool-tag">Synthesia</span><br>Offshoring using AI strictly for time efficiency.
+                        </td>
+                        <td class="edge-col">Offshore design agency. Strong on static design; PUNX wins comprehensively
+                            on <strong>video-first AI artistry</strong>.</td>
                     </tr>
                 </tbody>
             </table>
