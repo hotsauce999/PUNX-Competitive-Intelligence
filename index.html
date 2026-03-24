@@ -310,12 +310,97 @@
                 min-width: 1000px;
             }
         }
+
+        /* Password Overlay Styles */
+        #passwordOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(176, 38, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 229, 255, 0.08), transparent 25%);
+        }
+
+        .password-box {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            padding: 3rem;
+            border-radius: 16px;
+            backdrop-filter: blur(16px);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(176, 38, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .password-box input:focus {
+            border-color: var(--punx-edge);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        .password-box button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #b026ff, #00e5ff);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .password-box button:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 20px rgba(176, 38, 255, 0.5);
+        }
+
+        #mainContent {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <div id="passwordOverlay">
+        <div class="password-box">
+            <h2 style="color: #fff; margin-bottom: 5px;">Classified Intel</h2>
+            <p
+                style="color: var(--punx-edge); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: 600;">
+                Authorized Personnel Only</p>
+            <input type="password" id="passInput" placeholder="Enter Access Code">
+            <button onclick="checkPassword()">Unlock intelligence</button>
+            <p id="errorMsg" style="color: #ff3366; margin-top: 15px; display: none; font-size: 0.9rem;">Access Denied.
+                Incorrect code.</p>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent">
         <header>
             <h1>PUNX Competitive Intelligence</h1>
             <div class="subtitle">AI Readiness & Market Positioning Report</div>
@@ -375,7 +460,8 @@
                         <td>Digital Brands</td>
                         <td><span class="tool-tag">Digital AI Tools</span></td>
                         <td class="edge-col">Traditional agency model. PUNX bypasses standard timelines with
-                            <strong>AI-first workflows</strong>.</td>
+                            <strong>AI-first workflows</strong>.
+                        </td>
                     </tr>
                     <tr>
                         <td class="agency-name">Riot Inc. 916</td>
@@ -602,6 +688,33 @@
     </div>
 
     <script>
+        // Password Protection Logic
+        document.getElementById("passInput").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                checkPassword();
+            }
+        });
+
+        function checkPassword() {
+            var input = document.getElementById("passInput").value;
+            var errorMsg = document.getElementById("errorMsg");
+            // Authorized codes
+            if (input === "PUNX" || input.toLowerCase() === "punx" || input === "PUNX2026") {
+                document.getElementById("passwordOverlay").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+            } else {
+                errorMsg.style.display = "block";
+                // Shake effect for error
+                var box = document.querySelector(".password-box");
+                box.style.transform = "translateX(5px)";
+                setTimeout(() => box.style.transform = "translateX(-5px)", 50);
+                setTimeout(() => box.style.transform = "translateX(5px)", 100);
+                setTimeout(() => box.style.transform = "translateX(0)", 150);
+            }
+        }
+
+        // Search Filter Logic
         function filterTable() {
             // Declare variables
             var input, filter, table, tr, td, i, j, txtValue, match;
